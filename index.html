@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>이상형 월드컵 게임</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        img {
+            width: 500px;
+            height: 500px;
+        }
+
+        .round {
+            display: none;
+        }
+
+        #round1 {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>이상형 월드컵 게임</h1>
+
+    <div id="round1" class="round">
+        <h2>라운드 1-1</h2>
+        <img id="img1" src="33.jpg" alt="이미지1" onclick="selectImage('img1', 1)">
+        <img id="img2" src="44.jpg" alt="이미지2" onclick="selectImage('img2', 1)">
+    </div>
+
+    <div id="round2" class="round">
+        <h2>라운드 1-2</h2>
+        <img id="img3" src="55.jpg" alt="이미지3" onclick="selectImage('img3', 2)">
+        <img id="img4" src="66.jpg" alt="이미지4" onclick="selectImage('img4', 2)">
+    </div>
+
+    <div id="round3" class="round">
+        <h2>라운드 1-3</h2>
+        <img id="img5" src="77.jpg" alt="이미지5" onclick="selectImage('img5', 3)">
+        <img id="img6" src="88.jpg" alt="이미지6" onclick="selectImage('img6', 3)">
+    </div>
+
+    <div id="round4" class="round">
+        <h2>라운드 1-4</h2>
+        <img id="img7" src="10.jpg" alt="이미지7" onclick="selectImage('img7', 4)">
+        <img id="img8" src="11.jpg" alt="이미지8" onclick="selectImage('img8', 4)">
+    </div>
+
+    <div id="round5" class="round">
+        <h2>라운드 2-1</h2>
+        <img id="img9" onclick="selectedImages2('img9', 5)">
+        <img id="img10" onclick="selectImage2('img10', 5)">
+    </div>
+
+    <div id="round6" class="round">
+        <h2>라운드 2-2</h2>
+        <img id="img11" onclick="selectImage2('img11', 6)">
+        <img id="img12" onclick="selectImage2('img12', 6)">
+    </div>
+
+
+    <script>
+        var selectedImages = [];
+        var selectedImagesRound2 = [];
+
+        function selectImage(imageId, roundNumber) {
+            selectedImages.push(document.getElementById(imageId).src);
+            nextRound(roundNumber);
+        }
+
+        function selectImage2(imageId, roundNumber) {
+            selectedImagesRound2.push(document.getElementById(imageId).src);
+            nextRound(roundNumber);
+        }
+
+        function nextRound(roundNumber) {
+            document.getElementById('round' + roundNumber).style.display = 'none';
+            if (roundNumber < 4) {
+                document.getElementById('round' + (roundNumber + 1)).style.display = 'block';
+            } else if (roundNumber == 4) {
+                document.getElementById('img9').src = selectedImages[0];
+                document.getElementById('img10').src = selectedImages[1];
+                document.getElementById('round5').style.display = 'block';
+            } else if (roundNumber == 5) {
+                document.getElementById('img11').src = selectedImagesRound2[0];
+                document.getElementById('img12').src = selectedImagesRound2[1];
+                document.getElementById('round6').style.display = 'block';
+            } else if (roundNumber == 6) {
+                console.log('라운드 2에서 선택한 이미지:', selectedImagesRound2);
+                // 여기에서 선택한 이미지를 사용하여 추가적인 로직을 구현하면 됩니다.
+            }
+        }
+    </script>
+</body>
+</html>
